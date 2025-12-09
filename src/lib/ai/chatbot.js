@@ -1,7 +1,11 @@
 import OpenAI from "openai";
 
+const vectorStoreId = process.env.REACT_APP_VECTORDB_ID;
+const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+
 const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: apiKey,
+    dangerouslyAllowBrowser: true
 });
 
 const SYSTEM_PROMPT = `Bạn là trợ lý AI chuyên về môn Chủ nghĩa xã hội khoa học, đặc biệt là Chương 4: Dân chủ xã hội chủ nghĩa và Nhà nước xã hội chủ nghĩa. Bạn thân thiện, nhiệt tình và trả lời bằng tiếng Việt.
@@ -52,25 +56,30 @@ II. NHÀ NƯỚC XÃ HỘI CHỦ NGHĨA:
 - Không bịa đặt thông tin
 `;
 
-const vectorStoreId = process.env.VECTORDB_ID;
 
-const chat = async (messages) => {
-    const response = await client.chat.completions.create({
-        model: "gpt-5-nano",
-        messages: [
+console.log(vectorStoreId, apiKey)
+
+export const chat = async (messages) => {
+
+    console.log(messages)
+
+    const response = await client.responses.create({
+        model: "gpt-5-mini",
+        input: [
             {
                 role: "system",
                 content: SYSTEM_PROMPT,
             },
             ...messages,
         ],
-        tools: [
-            {
-                "type": "file_search",
-                "vector_store_ids": [vectorStoreId]
-            }
-        ]
+        tools: vectorStoreId ? [{
+            "type": "file_search",
+            "vector_store_ids": [vectorStoreId]
+        }] : undefined
     });
-    return response.choices[0].message.content;
+
+    console.log(response)
+
+    return response.output_text;
 }
 
