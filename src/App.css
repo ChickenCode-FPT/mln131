@@ -482,7 +482,7 @@ button.ghost {
   background: #0f172a;
   display: grid;
   grid-template-rows: 1fr auto;
-  height: 360px;
+  height: 75vh;
 }
 
 .chat-messages {
@@ -526,4 +526,3 @@ button.ghost {
   background: #0b1220;
   color: #e5e7eb;
 }
-
