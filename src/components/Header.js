@@ -4,7 +4,7 @@ const NAV_ITEMS = [
   { id: 'lesson', label: 'Bài học' },
   { id: 'flashcard', label: 'Flashcard' },
   { id: 'game', label: 'Trò chơi ôn tập' },
-  { id: 'chat', label: 'Hỏi AI (Gemini)' },
+  { id: 'chat', label: 'Hỏi AI (Chat GPT)' },
 ];
 
 export default function Header({ active, onChange }) {
