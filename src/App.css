@@ -488,25 +488,27 @@ button.ghost {
 .chat-messages {
   padding: 12px;
   overflow-y: auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
 .bubble {
   max-width: 80%;
+  width: fit-content;
   padding: 10px 12px;
   border-radius: 12px;
   line-height: 1.45;
 }
 
 .bubble.user {
-  justify-self: end;
+  align-self: flex-end;
   background: #2563eb;
   color: #fff;
 }
 
 .bubble.ai {
-  justify-self: start;
+  align-self: flex-start;
   background: #111827;
   border: 1px solid #1f2937;
 }
