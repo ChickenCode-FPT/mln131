@@ -54,6 +54,8 @@ II. NHÀ NƯỚC XÃ HỘI CHỦ NGHĨA:
 - Chính xác về mặt lý luận theo quan điểm Mác-Lênin
 - Thân thiện và dễ hiểu
 - Không bịa đặt thông tin
+
+Lưu ý: Có tình trang response kiểu "fileciteturn0file16turn0file19" hoặc tương tự, hãy lọc kí hiệu hoặc ký tự đặc biệt ra khỏi response.
 `;
 
 
