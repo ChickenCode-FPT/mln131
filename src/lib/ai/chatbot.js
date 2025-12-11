@@ -59,8 +59,6 @@ Lưu ý: Có tình trang response kiểu "fileciteturn0file16turn0file1
 `;
 
 
-console.log(vectorStoreId, apiKey)
-
 export const chat = async (messages) => {
 
     console.log(messages)
