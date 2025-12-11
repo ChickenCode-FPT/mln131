@@ -1,0 +1,613 @@
+/* ===========================================
+   EDUCATIONAL UI/UX STYLES
+   Based on vnr202-delta design principles
+   - Light backgrounds for readability
+   - Color-coded icons and highlights
+   - Clear visual hierarchy
+   - Digestible content chunks
+=========================================== */
+
+/* ===== SECTION HEADER STYLES ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header .content-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1a2b4a;
+    margin: 0 0 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header .content-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #dc2626, #f59e0b);
+    border-radius: 2px;
+}
+
+/* ===== INTRO BOX - Alert Style ===== */
+.intro-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 5px solid #f59e0b;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-box::before {
+    content: '⚡';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.intro-box .content-intro {
+    margin: 0;
+    padding-left: 2.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #78350f;
+}
+
+/* ===== DEFINITION CARDS - Light Theme ===== */
+.definition-box-edu {
+    background: #f8fafc;
+    padding: 2rem 0;
+}
+
+.definition-grid-edu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.definition-card-edu {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.definition-card-edu:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Color variants for icons */
+.definition-card-edu.variant-blue {
+    border-top: 4px solid #3b82f6;
+}
+
+.definition-card-edu.variant-blue .definition-icon-edu {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.definition-card-edu.variant-amber {
+    border-top: 4px solid #f59e0b;
+}
+
+.definition-card-edu.variant-amber .definition-icon-edu {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.definition-card-edu.variant-green {
+    border-top: 4px solid #10b981;
+}
+
+.definition-card-edu.variant-green .definition-icon-edu {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.definition-card-edu.variant-red {
+    border-top: 4px solid #ef4444;
+}
+
+.definition-card-edu.variant-red .definition-icon-edu {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.definition-card-edu.variant-purple {
+    border-top: 4px solid #8b5cf6;
+}
+
+.definition-card-edu.variant-purple .definition-icon-edu {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.definition-icon-edu {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.definition-label-edu {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.75rem;
+}
+
+.definition-text-edu {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* Key point highlight */
+.definition-text-edu strong,
+.definition-text-edu .highlight {
+    color: #1a2b4a;
+    font-weight: 600;
+    background: linear-gradient(to bottom, transparent 60%, #fef3c7 60%);
+    padding: 0 2px;
+}
+
+/* ===== BULLET POINT CARDS ===== */
+.bullet-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f3f4f6;
+    transition: all 0.2s ease;
+}
+
+.bullet-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-color: #e5e7eb;
+}
+
+.bullet-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+}
+
+.bullet-icon.icon-red {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.bullet-icon.icon-blue {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.bullet-icon.icon-green {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.bullet-icon.icon-amber {
+    background: #fffbeb;
+    color: #d97706;
+}
+
+.bullet-icon.icon-purple {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.bullet-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.5rem;
+}
+
+.bullet-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* ===== TIMELINE EDUCATIONAL ===== */
+.timeline-edu {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-edu::before {
+    content: '';
+    position: absolute;
+    left: 140px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #f59e0b, #ef4444, #3b82f6, #10b981);
+    border-radius: 2px;
+}
+
+.timeline-item-edu {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.timeline-date-edu {
+    width: 120px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.timeline-year-edu {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a2b4a;
+}
+
+.timeline-period-edu {
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.timeline-marker-edu {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.timeline-card-edu {
+    flex: 1;
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid;
+    transition: transform 0.3s ease;
+}
+
+.timeline-card-edu:hover {
+    transform: translateX(8px);
+}
+
+.timeline-name-edu {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.75rem;
+}
+
+.timeline-desc-edu {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* ===== COMPARISON TABLE EDUCATIONAL ===== */
+.comparison-table-edu {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.comparison-header-edu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #1a2b4a;
+}
+
+.comparison-header-edu .comparison-cell-edu {
+    color: white;
+    font-weight: 700;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.comparison-row-edu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background 0.2s ease;
+}
+
+.comparison-row-edu:hover {
+    background: #f8fafc;
+}
+
+.comparison-row-edu:last-child {
+    border-bottom: none;
+}
+
+.comparison-cell-edu {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.comparison-cell-edu.aspect-edu {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #1f2937;
+    border-right: 1px solid #e5e7eb;
+}
+
+.comparison-cell-edu.bourgeois-edu {
+    color: #6b7280;
+    border-right: 1px solid #f3f4f6;
+}
+
+.comparison-cell-edu.socialist-edu {
+    color: #059669;
+    font-weight: 500;
+    background: linear-gradient(to right, transparent, #ecfdf5);
+}
+
+/* ===== FEATURE CARDS EDUCATIONAL ===== */
+.features-grid-edu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card-edu {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.feature-card-edu:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+}
+
+.feature-header-edu {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.feature-header-edu.header-blue {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+.feature-header-edu.header-green {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+.feature-header-edu.header-purple {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+}
+
+.feature-icon-edu {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.feature-icon-edu.icon-blue {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.feature-icon-edu.icon-green {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.feature-icon-edu.icon-purple {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.feature-title-edu {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.feature-highlight-edu {
+    padding: 0.75rem 2rem;
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    font-weight: 600;
+    color: #92400e;
+    font-size: 0.95rem;
+}
+
+.feature-body-edu {
+    padding: 1.5rem 2rem;
+}
+
+.feature-points-edu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-points-edu li {
+    position: relative;
+    padding: 0.75rem 0 0.75rem 2rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #4b5563;
+    border-bottom: 1px solid #f9fafb;
+}
+
+.feature-points-edu li:last-child {
+    border-bottom: none;
+}
+
+.feature-points-edu li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 20px;
+    height: 20px;
+    background: #10b981;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== QUOTE BOX ===== */
+.quote-box-edu {
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border-left: 5px solid #dc2626;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.quote-box-edu::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 5rem;
+    color: #dc2626;
+    opacity: 0.2;
+    font-family: serif;
+    line-height: 1;
+}
+
+.quote-box-edu p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #7f1d1d;
+    margin: 0;
+    font-style: italic;
+    padding-left: 1rem;
+}
+
+/* ===== CONCLUSION BOX ===== */
+.conclusion-box-edu {
+    background: linear-gradient(135deg, #1a2b4a, #0f172a);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-top: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.conclusion-box-edu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #dc2626, #3b82f6);
+}
+
+.conclusion-box-edu p {
+    color: #e5e7eb;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.conclusion-box-edu strong {
+    color: #fbbf24;
+}
+
+/* ===== CONTENT SECTION BACKGROUNDS ===== */
+.content-section-light {
+    background: #f8fafc;
+    padding: 4rem 0;
+}
+
+.content-section-white {
+    background: white;
+    padding: 4rem 0;
+}
+
+.content-wrapper-edu {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .definition-grid-edu {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid-edu {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-header-edu,
+    .comparison-row-edu {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-cell-edu {
+        padding: 1rem;
+    }
+
+    .timeline-edu::before {
+        left: 20px;
+    }
+
+    .timeline-item-edu {
+        flex-direction: column;
+        padding-left: 50px;
+    }
+
+    .timeline-date-edu {
+        text-align: left;
+        width: auto;
+    }
+}
