@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { chat } from '../lib/ai/chatbot';
 import * as HiIcons from 'react-icons/hi2';
+import './ChatWidget.css';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);

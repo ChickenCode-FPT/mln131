@@ -1,0 +1,339 @@
+/* ===== OVERVIEW PAGE STYLES ===== */
+.overview-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #060915, #0b1224 45%, #0a1220 100%);
+}
+
+/* Hero Section */
+.overview-hero {
+    background: linear-gradient(135deg, #1a2b4a 0%, #0f172a 100%);
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.overview-hero.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overview-hero-content {
+    max-width: 600px;
+    text-align: left;
+}
+
+.overview-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.overview-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0 0 1.5rem;
+}
+
+.title-highlight {
+    color: #fbbf24;
+}
+
+.overview-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+}
+
+.overview-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fbbf24;
+}
+
+.stat-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.overview-hero-image {
+    width: auto;
+    height: auto;
+    max-width: 340px;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    transform: perspective(1200px) rotateY(-6deg) rotateX(3deg);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.overview-hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.35));
+}
+
+.overview-hero-image:hover {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1.04);
+    filter: brightness(1.02);
+}
+
+/* Content Section */
+.overview-content {
+    background: transparent;
+    padding: 4rem 0;
+}
+
+.overview-content .section-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+}
+
+.overview-content .section-header .content-title {
+    margin: 0;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #1f2937;
+}
+
+.overview-content .section-header .content-title::after {
+    display: none;
+}
+
+.overview-section-subtitle {
+    font-size: 14px;
+    color: #d1d5db;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Navigation Cards Grid */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.overview-card {
+    background: #111c34;
+    border: 1px solid #1c2740;
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.overview-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--card-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border-color: transparent;
+}
+
+.overview-card:hover::before {
+    opacity: 1;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.card-number {
+    width: 28px;
+    height: 28px;
+    background: #1f2937;
+    color: #9ca3af;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #e8e5da;
+    margin: 0 0 0.5rem;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #d1d5db;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+}
+
+.card-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.card-highlights li {
+    background: #1f2937;
+    color: #9ca3af;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.card-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--card-color, #3b82f6);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.card-action svg {
+    transition: transform 0.2s ease;
+}
+
+.overview-card:hover .card-action svg {
+    transform: translateX(4px);
+}
+
+.overview-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Quick Actions */
+.overview-actions {
+    background: #F2F2F2;
+    padding: 3rem 0;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.action-card {
+    background: #111c34;
+    border: 1px solid #1c2740;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease, opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.action-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+}
+
+.action-icon {
+    font-size: 2rem;
+    color: #3b82f6;
+}
+
+.action-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e8e5da;
+    margin: 0 0 0.25rem;
+}
+
+.action-card p {
+    font-size: 0.85rem;
+    color: #d1d5db;
+    margin: 0;
+}
+
+.action-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .overview-hero {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+
+    .overview-hero-content {
+        text-align: center;
+    }
+
+    .overview-stats {
+        justify-content: center;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+}

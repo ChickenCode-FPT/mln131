@@ -12,6 +12,7 @@ import * as HiIcons from 'react-icons/hi2';
 import * as FaIcons from 'react-icons/fa6';
 import * as MdIcons from 'react-icons/md';
 import { saveGameScore, getLeaderboard, getHighestScore, getHighestWave } from '../lib/supabase';
+import './GamePage.css';
 
 const sourceQuestions = (gameQuestions && gameQuestions.length ? gameQuestions : flashcards);
 const QUESTIONS = sourceQuestions.map((c) => ({
@@ -157,8 +158,22 @@ export default function GamePage() {
   const [showRewardSelection, setShowRewardSelection] = useState(false);
   const [showRewardFeedback, setShowRewardFeedback] = useState(false);
   const [availableRewards, setAvailableRewards] = useState([]);
+
+  // Lock body scroll when any modal is open
+  useEffect(() => {
+    const anyModalOpen = showGameModal || showNameForm || showRewardSelection || showRewardFeedback;
+    if (anyModalOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+    return undefined;
+  }, [showGameModal, showNameForm, showRewardSelection, showRewardFeedback]);
   const [damageFlash, setDamageFlash] = useState(false);
   const prevHealth = useRef(health);
+  const scoreSavedRef = useRef(false);
 
   // Hiển thị -1 tim khi bị trúng đạn/va chạm
   useEffect(() => {
@@ -172,20 +187,9 @@ export default function GamePage() {
   // Random các phần thưởng có sẵn cho mỗi câu hỏi
   const generateAvailableRewards = () => {
     const allRewardTypes = ['bullet', 'score', 'double', 'mystery'];
-    const available = [];
-    
-    // Luôn có ít nhất 2 phần thưởng
-    const minRewards = 2;
-    const maxRewards = 4;
-    const numRewards = Math.floor(Math.random() * (maxRewards - minRewards + 1)) + minRewards;
-    
-    // Random các loại phần thưởng
+    // Xáo trộn và lấy đúng 2 phần thưởng ngẫu nhiên
     const shuffled = [...allRewardTypes].sort(() => Math.random() - 0.5);
-    for (let i = 0; i < numRewards && i < shuffled.length; i++) {
-      available.push(shuffled[i]);
-    }
-    
-    return available;
+    return shuffled.slice(0, 2);
   };
 
   const answer = (opt) => {
@@ -325,7 +329,8 @@ export default function GamePage() {
 
   // Save score when game ends (health === 0) and update highest score
   useEffect(() => {
-    if (health === 0 && playing && playerName) {
+    if (health === 0 && playerName && !scoreSavedRef.current) {
+      scoreSavedRef.current = true;
       saveGameScore(playerName, score, wave, health).then(() => {
         // Cập nhật điểm cao nhất sau khi lưu
         loadHighestScore();
@@ -333,7 +338,7 @@ export default function GamePage() {
         loadLeaderboard();
       });
     }
-  }, [health, playing, playerName, score, wave]);
+  }, [health, playerName, score, wave]);
 
   const loadLeaderboard = async () => {
     setLoadingLeaderboard(true);
@@ -376,6 +381,7 @@ export default function GamePage() {
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (playerName.trim()) {
+      scoreSavedRef.current = false;
       setShowNameForm(false);
       setShowGameModal(true);
       originalStartGame();
@@ -384,6 +390,7 @@ export default function GamePage() {
 
   // Restart ngay trong popup game (không cần nhập tên lại)
   const handleRestartGame = () => {
+    scoreSavedRef.current = false;
     resetGame();
     setQuestion(null);
     setAnswerFeedback('');
@@ -395,6 +402,7 @@ export default function GamePage() {
   };
 
   const handleCloseModal = () => {
+    scoreSavedRef.current = false;
     setShowGameModal(false);
     resetGame();
     setQuestion(null);
@@ -603,8 +611,16 @@ export default function GamePage() {
                             onClick={() => answer(opt)}
                             disabled={!!answerFeedback || showRewardSelection}
                           >
-                            <span className="game-option-letter">{letters[idx]}</span>
-                            <span className="game-option-text">{opt}</span>
+                            {(() => {
+                              let cleanText = opt.trim();
+                              if (cleanText.length > 2 && cleanText[1] === '.') {
+                                const firstChar = cleanText[0].toUpperCase();
+                                if (['A', 'B', 'C', 'D'].includes(firstChar)) {
+                                  cleanText = cleanText.slice(2).trim();
+                                }
+                              }
+                              return `${letters[idx]}. ${cleanText}`;
+                            })()}
                           </button>
                         ))}
                       </div>

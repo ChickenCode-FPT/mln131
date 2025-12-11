@@ -1,0 +1,36 @@
+/* Common Global Styles */
+:root {
+  --bg-main: #090f1d;
+  --bg-panel: #0f172a;
+  --bg-elevated: #111c34;
+  --accent-1: #f59e0b;
+  --accent-2: #f97316;
+  --accent-3: #a855f7;
+  --accent-4: #22d3ee;
+  --text-primary: #e8e5da;
+  --text-secondary: #9ca3af;
+  --border-soft: rgba(255, 255, 255, 0.06);
+}
+
+.app-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(1400px at 10% 20%, rgba(168, 85, 247, 0.2), transparent 40%),
+    radial-gradient(900px at 80% 0%, rgba(34, 211, 238, 0.2), transparent 45%),
+    radial-gradient(1200px at 50% 80%, rgba(249, 115, 22, 0.15), transparent 45%),
+    linear-gradient(135deg, #060915, #0b1224 45%, #0a1220 100%);
+  color: var(--text-primary);
+}
+
+.content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.page-container {
+  color: #ffffffe5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

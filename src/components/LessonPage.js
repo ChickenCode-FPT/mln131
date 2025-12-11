@@ -1,26 +1,9 @@
-import { useMemo, useState, useEffect, useRef } from 'react';
-import lessons from '../data/lessonContent';
+import { useEffect } from 'react';
 import * as HiIcons from 'react-icons/hi2';
-import * as FaIcons from 'react-icons/fa6';
-import * as MdIcons from 'react-icons/md';
-import * as BsIcons from 'react-icons/bs';
+import lessons from '../data/lessonContent';
 import './Footer.css';
-
-// Icon mapping helper
-const getIcon = (iconName, iconLib = 'hi') => {
-  const iconMap = {
-    hi: HiIcons,
-    fa: FaIcons,
-    md: MdIcons,
-    bs: BsIcons,
-  };
-  
-  const IconLibrary = iconMap[iconLib] || HiIcons;
-  const IconComponent = IconLibrary[iconName];
-  
-  // Fallback to a default icon if not found
-  return IconComponent || HiIcons.HiQuestionMarkCircle;
-};
+ import '../styles/educational.css';
+import '../styles/overview.css';
 
 // Scroll reveal hook
 const useScrollReveal = () => {
@@ -38,7 +21,7 @@ const useScrollReveal = () => {
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.content-block, .hero-section, .timeline-item');
+    const elements = document.querySelectorAll('.overview-hero, .overview-card, .action-card');
     elements.forEach((el) => observer.observe(el));
 
     return () => {
@@ -47,277 +30,162 @@ const useScrollReveal = () => {
   }, []);
 };
 
-export default function LessonPage({ onChange }) {
-  const [selectedId, setSelectedId] = useState(lessons[0]?.id);
-  const current = useMemo(
-    () => lessons.find((l) => l.id === selectedId) || lessons[0],
-    [selectedId]
-  );
+// Navigation cards data
+const OVERVIEW_SECTIONS = [
+  {
+    id: 'danchu',
+    title: 'Dân Chủ là gì?',
+    description: 'Khái niệm dân chủ và lịch sử phát triển qua các thời kỳ',
+    icon: 'HiUsers',
+    color: '#3b82f6',
+    highlights: ['Quyền lực nhân dân', 'Dân chủ nguyên thủy → XHCN', '4 giai đoạn lịch sử']
+  },
+  {
+    id: 'sosanh',
+    title: 'So Sánh Hai Nền Dân Chủ',
+    description: 'Phân biệt Dân chủ tư sản và Dân chủ xã hội chủ nghĩa',
+    icon: 'HiScale',
+    color: '#8b5cf6',
+    highlights: ['6 khía cạnh so sánh', 'Bản chất giai cấp', 'Mục đích khác biệt']
+  },
+  {
+    id: 'banchat',
+    title: 'Bản Chất Dân Chủ XHCN',
+    description: 'Ba bản chất cốt lõi: Chính trị, Kinh tế, Văn hóa-Xã hội',
+    icon: 'HiSparkles',
+    color: '#10b981',
+    highlights: ['Đảng CS lãnh đạo', 'Sở hữu xã hội', 'Hệ tư tưởng Mác-Lênin']
+  },
+  {
+    id: 'nhanuoc',
+    title: 'Nhà Nước XHCN',
+    description: 'Sự ra đời, bản chất và chức năng của Nhà nước XHCN',
+    icon: 'HiBuildingOffice2',
+    color: '#ef4444',
+    highlights: ['Ra đời từ CM 1917', '3 bản chất cơ bản', 'Chức năng trấn áp + xây dựng']
+  },
+  {
+    id: 'moiquanhe',
+    title: 'Mối Quan Hệ Biện Chứng',
+    description: 'Quan hệ giữa Dân chủ XHCN và Nhà nước XHCN',
+    icon: 'HiArrowsRightLeft',
+    color: '#f59e0b',
+    highlights: ['4 bước quy trình', 'Kiểm soát quyền lực', 'Thể chế hóa ý chí']
+  },
+  {
+    id: 'vietnam',
+    title: 'Áp Dụng tại Việt Nam',
+    description: 'Dân chủ XHCN và Nhà nước pháp quyền tại Việt Nam',
+    icon: 'HiFlag',
+    color: '#dc2626',
+    highlights: ['Từ 1945 đến nay', 'Đổi mới 1986', 'Tư tưởng Hồ Chí Minh']
+  },
+];
 
+export default function LessonPage({ onChange }) {
   useScrollReveal();
 
-  if (!current) return null;
-
-  const renderContent = (content) => {
-    switch (content.type) {
-      case 'definition':
-        return (
-          <div className="definition-box">
-            <h2 className="content-title">{content.title}</h2>
-            {content.intro && <p className="content-intro">{content.intro}</p>}
-            <div className="definition-grid">
-              {content.items.map((item, idx) => {
-                const Icon = getIcon(item.icon, item.iconLib);
-                return (
-                  <div key={idx} className="definition-card">
-                    <div className="definition-icon">
-                      <Icon />
-                    </div>
-                    <h3 className="definition-label">{item.label}</h3>
-                    <p className="definition-text">{item.text}</p>
-                  </div>
-                );
-              })}
-            </div>
-            {content.conclusion && <p className="content-conclusion">{content.conclusion}</p>}
-          </div>
-        );
-
-      case 'timeline':
-        return (
-          <div className="timeline-box">
-            <h2 className="content-title">{content.title}</h2>
-            {content.intro && <p className="content-intro">{content.intro}</p>}
-            <div className="timeline">
-              {content.items.map((item, idx) => (
-                <div key={idx} className="timeline-item">
-                  <div className="timeline-marker" style={{ borderColor: item.color, backgroundColor: item.color }}>
-                    <div className="timeline-year">{item.year}</div>
-                  </div>
-                  <div className="timeline-content">
-                    <div className="timeline-period">{item.period}</div>
-                    <h3 className="timeline-name">{item.name}</h3>
-                    <p className="timeline-desc">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 'comparison':
-        return (
-          <div className="comparison-box">
-            <h2 className="content-title">{content.title}</h2>
-            <div className="comparison-table">
-              <div className="comparison-header">
-                <div className="comparison-cell">Khía cạnh</div>
-                <div className="comparison-cell">Dân chủ tư sản</div>
-                <div className="comparison-cell">Dân chủ XHCN</div>
-              </div>
-              {content.items.map((item, idx) => (
-                <div key={idx} className="comparison-row">
-                  <div className="comparison-cell aspect">{item.aspect}</div>
-                  <div className="comparison-cell bourgeois">{item.bourgeois}</div>
-                  <div className="comparison-cell socialist">{item.socialist}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 'features':
-        return (
-          <div className="features-box">
-            <h2 className="content-title">{content.title}</h2>
-            {content.intro && <p className="content-intro">{content.intro}</p>}
-            <div className="features-grid">
-              {content.items.map((item, idx) => {
-                const Icon = getIcon(item.icon, item.iconLib);
-                return (
-                  <div key={idx} className="feature-card">
-                    <div className="feature-header">
-                      <div className="feature-icon">
-                        <Icon />
-                      </div>
-                      <h3 className="feature-title">{item.title}</h3>
-                    </div>
-                    <div className="feature-highlight">{item.highlight}</div>
-                    <ul className="feature-points">
-                      {item.points.map((point, pIdx) => (
-                        <li key={pIdx}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-            {content.conclusion && <p className="content-conclusion">{content.conclusion}</p>}
-          </div>
-        );
-
-      case 'state':
-        return (
-          <div className="state-box">
-            <h2 className="content-title">{content.title}</h2>
-            {content.sections.map((section, idx) => (
-              <div key={idx} className="state-section">
-                <h3 className="state-subtitle">{section.subtitle}</h3>
-                {section.text && <p className="state-text">{section.text}</p>}
-                {section.intro && <p className="state-intro">{section.intro}</p>}
-                {section.details && (
-                  <ul className="state-details">
-                    {section.details.map((detail, dIdx) => (
-                      <li key={dIdx}>{detail}</li>
-                    ))}
-                  </ul>
-                )}
-                {section.items && (
-                  <div className="state-items">
-                    {section.items.map((item, itemIdx) => (
-                      <div key={itemIdx} className="state-item">
-                        <div className="state-item-label">{item.label}</div>
-                        <div className="state-item-desc">{item.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {section.conclusion && <p className="state-conclusion">{section.conclusion}</p>}
-              </div>
-            ))}
-          </div>
-        );
-
-      case 'relationship':
-        return (
-          <div className="relationship-box">
-            <h2 className="content-title">{content.title}</h2>
-            {content.intro && <p className="content-intro">{content.intro}</p>}
-            <div className="relationship-flow">
-              {content.flow.map((item, idx) => {
-                const Icon = getIcon(item.icon, item.iconLib);
-                return (
-                  <div key={idx}>
-                    <div className="flow-item">
-                      <div className="flow-step">{item.step}</div>
-                      <div className="flow-icon">
-                        <Icon />
-                      </div>
-                      <h3 className="flow-title">{item.title}</h3>
-                      <p className="flow-desc">{item.desc}</p>
-                    </div>
-                    {idx < content.flow.length - 1 && (
-                      <div className="flow-arrow">
-                        <HiIcons.HiArrowDown />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            {content.conclusion && <p className="content-conclusion">{content.conclusion}</p>}
-          </div>
-        );
-
-      case 'vietnam':
-        return (
-          <div className="vietnam-box">
-            <h2 className="content-title">{content.title}</h2>
-            {content.sections.map((section, idx) => (
-              <div key={idx} className="vietnam-section">
-                <h3 className="vietnam-subtitle">{section.subtitle}</h3>
-                {section.text && <p className="vietnam-text">{section.text}</p>}
-                {section.points && (
-                  <ul className="vietnam-points">
-                    {section.points.map((point, pIdx) => (
-                      <li key={pIdx}>{point}</li>
-                    ))}
-                  </ul>
-                )}
-                {section.quote && (
-                  <div className="vietnam-quote">
-                    <p>{section.quote}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  const renderHeroTitle = () => {
-    const t = current.title || '';
-    const keyword = 'Dân chủ xã hội chủ nghĩa';
-    if (t.includes(keyword)) {
-      const [before, after] = t.split(keyword);
-      return (
-        <>
-          <span>{before.trim()} </span>
-          <br />
-          <span className="highlight">{keyword}</span>
-          {after ? <span>{after}</span> : null}
-        </>
-      );
-    }
-    return t.split(' ').map((word, i) =>
-      word.includes('Mác') || word.includes('Hồ') || word.includes('Đảng') || word.includes('XHCN') || word.includes('xã') || word.includes('hội')
-        ? <span key={i} className="highlight">{word} </span>
-        : <span key={i}>{word} </span>
-    );
-  };
+  const lesson = lessons[0];
+  if (!lesson) return null;
 
   return (
-    <div className="lesson-page">
+    <div className="overview-page">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <div className="hero-text">
-            <h1 className="hero-title">{renderHeroTitle()}</h1>
-            <p className="hero-description">{current.summary}</p>
-            <div className="hero-actions">
-              <button
-                className="btn-primary"
-                onClick={() => {
-                  const el = document.getElementById('lesson-content');
-                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-              >
-                Khám phá
-              </button>
-              <button
-                className="btn-secondary"
-                onClick={() => onChange && onChange('game')}
-              >
-                Trò chơi
-              </button>
-              <button
-                className="btn-secondary"
-                onClick={() => onChange && onChange('flashcard')}
-              >
-                Flashcard
-              </button>
+      <section className="overview-hero">
+        <div className="overview-hero-content">
+          <span className="overview-badge">Chương 4 • MLN131</span>
+          <h1 className="overview-title">
+            Dân Chủ và Nhà Nước<br />
+            <span className="title-highlight">Xã Hội Chủ Nghĩa</span>
+          </h1>
+          <p className="overview-subtitle">
+            {lesson.summary}
+          </p>
+          <div className="overview-stats">
+            <div className="stat-item">
+              <span className="stat-number">6</span>
+              <span className="stat-text">Chủ đề</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">45</span>
+              <span className="stat-text">Phút học</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">7</span>
+              <span className="stat-text">Nội dung</span>
             </div>
           </div>
-          {current.hero && (
-            <div className="hero-image-wrapper">
-              <img src={current.hero} alt={current.title} className="hero-image" />
-            </div>
-          )}
+        </div>
+        {lesson.hero && (
+          <div className="overview-hero-image">
+            <img src={lesson.hero} alt="Chủ nghĩa Mác-Lênin" />
+          </div>
+        )}
+      </section>
+
+      {/* Navigation Cards */}
+      <section className="overview-content">
+        <div className="content-wrapper-edu">
+          <div className="section-header" style={{ marginBottom: '2rem' }}>
+            <h2 className="content-title">Khám phá nội dung</h2>
+            <p className="overview-section-subtitle">
+              Chọn một chủ đề để tìm hiểu chi tiết
+            </p>
+          </div>
+
+          <div className="overview-grid">
+            {OVERVIEW_SECTIONS.map((section, idx) => {
+              const Icon = HiIcons[section.icon] || HiIcons.HiQuestionMarkCircle;
+              return (
+                <div
+                  key={section.id}
+                  className="overview-card"
+                  onClick={() => onChange(section.id)}
+                  style={{ '--card-color': section.color }}
+                >
+                  <div className="card-header">
+                    <div className="card-icon" style={{ background: section.color }}>
+                      <Icon />
+                    </div>
+                    <span className="card-number">{idx + 1}</span>
+                  </div>
+                  <h3 className="card-title">{section.title}</h3>
+                  <p className="card-description">{section.description}</p>
+                  <ul className="card-highlights">
+                    {section.highlights.map((h, i) => (
+                      <li key={i}>{h}</li>
+                    ))}
+                  </ul>
+                  <div className="card-action">
+                    <span>Xem chi tiết</span>
+                    <HiIcons.HiArrowRight />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Main Content - Structured Blocks */}
-      <section className="content-flow" id="lesson-content">
-        <div className="content-wrapper">
-          {current.content && current.content.map((content, idx) => (
-            <div key={idx} className="content-block">
-              {renderContent(content)}
+      {/* Quick Actions */}
+      <section className="overview-actions">
+        <div className="content-wrapper-edu">
+          <div className="actions-grid">
+            <div className="action-card" onClick={() => onChange('flashcard')}>
+              <HiIcons.HiRectangleStack className="action-icon" />
+              <div>
+                <h4>Flashcard</h4>
+                <p>Ôn tập với thẻ ghi nhớ</p>
+              </div>
             </div>
-          ))}
+            <div className="action-card" onClick={() => onChange('game')}>
+              <HiIcons.HiPuzzlePiece className="action-icon" />
+              <div>
+                <h4>Trò chơi</h4>
+                <p>Học qua câu hỏi tương tác</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -329,9 +197,9 @@ export default function LessonPage({ onChange }) {
               <HiIcons.HiOutlineBookOpen className="footer-icon" />
               <h4 className="footer-title">Dự án học thuật</h4>
             </div>
-            <p className="footer-text"><span className="footer-label">Môn:</span> MLN131</p>
-            <p className="footer-text"><span className="footer-label">Trường:</span> Đại học FPT</p>
-            <p className="footer-text"><span className="footer-label">Học kỳ:</span> 2025</p>
+            <p className="footer-text"><span className="footer-label">Môn: </span>MLN131</p>
+            <p className="footer-text"><span className="footer-label">Trường: </span>Đại học FPT</p>
+            <p className="footer-text"><span className="footer-label">Học kỳ: </span>2025</p>
             <div className="footer-accent accent-red" />
           </div>
 
@@ -340,13 +208,13 @@ export default function LessonPage({ onChange }) {
               <HiIcons.HiUserGroup className="footer-icon" />
               <h4 className="footer-title">Thông tin nhóm</h4>
             </div>
-            <p className="footer-text"><span className="footer-label">Nhóm:</span> 6</p>
-            <p className="footer-text"><span className="footer-label">Thành viên:</span></p>
+            <p className="footer-text"><span className="footer-label">Nhóm: </span>6</p>
+            <p className="footer-text"><span className="footer-label">Thành viên: </span></p>
             <ul className="footer-list">
               <li>Đỗ Quốc Hưng - SE170515</li>
               <li>Vũ Quang Nguyên - SE180208</li>
               <li>Lê Tiến Đạt - SE182453</li>
-              <li>Hồ Tài Liên Vy Kha - SE182749</li>
+              <li>Hồ Tài Liên Vy Kha - SE182749</li>
               <li>Phạm Thế Danh - SE184514</li>
               <li>Trần Thiện Duy - SE184596</li>
             </ul>
@@ -358,7 +226,7 @@ export default function LessonPage({ onChange }) {
               <HiIcons.HiEnvelope className="footer-icon" />
               <h4 className="footer-title">Giảng viên</h4>
             </div>
-            <p className="footer-text"><span className="footer-label">Hướng dẫn:</span> Lê Minh Trí</p>
+            <p className="footer-text"><span className="footer-label">Hướng dẫn: </span>Lê Minh Trí</p>
             <p className="footer-text footer-note">Cảm ơn thầy đã hỗ trợ nhóm trong quá trình thực hiện dự án.</p>
             <div className="footer-accent accent-green" />
           </div>
