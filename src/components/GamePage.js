@@ -11,7 +11,7 @@ import flashcards, { gameQuestions } from '../data/flashcards';
 import * as HiIcons from 'react-icons/hi2';
 import * as FaIcons from 'react-icons/fa6';
 import * as MdIcons from 'react-icons/md';
-import { saveGameScore, getLeaderboard } from '../lib/supabase';
+import { saveGameScore, getLeaderboard, getHighestScore, getHighestWave } from '../lib/supabase';
 
 const sourceQuestions = (gameQuestions && gameQuestions.length ? gameQuestions : flashcards);
 const QUESTIONS = sourceQuestions.map((c) => ({
@@ -114,6 +114,8 @@ export default function GamePage() {
   const [loadingLeaderboard, setLoadingLeaderboard] = useState(false);
   const [question, setQuestion] = useState(null);
   const [used, setUsed] = useState(new Set());
+  const [highestScore, setHighestScore] = useState(0);
+  const [highestWave, setHighestWave] = useState(0);
 
   const {
     playing,
@@ -315,15 +317,21 @@ export default function GamePage() {
 
   const letters = ['A', 'B', 'C', 'D'];
 
-  // Load leaderboard when component mounts
+  // Load leaderboard and highest score when component mounts
   useEffect(() => {
     loadLeaderboard();
+    loadHighestScore();
   }, []);
 
-  // Save score when game ends (health === 0)
+  // Save score when game ends (health === 0) and update highest score
   useEffect(() => {
     if (health === 0 && playing && playerName) {
-      saveGameScore(playerName, score, wave, health);
+      saveGameScore(playerName, score, wave, health).then(() => {
+        // Cập nhật điểm cao nhất sau khi lưu
+        loadHighestScore();
+        // Cũng reload leaderboard để có dữ liệu mới nhất
+        loadLeaderboard();
+      });
     }
   }, [health, playing, playerName, score, wave]);
 
@@ -337,8 +345,28 @@ export default function GamePage() {
         return b.score - a.score;
       });
       setLeaderboardData(sortedData);
+      
+      // Cập nhật điểm cao nhất từ leaderboard
+      if (sortedData.length > 0) {
+        setHighestScore(sortedData[0].score);
+        // Tìm wave cao nhất
+        const maxWave = Math.max(...sortedData.map(entry => entry.wave));
+        setHighestWave(maxWave);
+      }
     }
     setLoadingLeaderboard(false);
+  };
+
+  const loadHighestScore = async () => {
+    const { data: scoreData, error: scoreError } = await getHighestScore();
+    if (!scoreError && scoreData !== null) {
+      setHighestScore(scoreData);
+    }
+    
+    const { data: waveData, error: waveError } = await getHighestWave();
+    if (!waveError && waveData !== null) {
+      setHighestWave(waveData);
+    }
   };
 
   const handleStartGame = () => {
@@ -445,14 +473,14 @@ export default function GamePage() {
               <HiIcons.HiTrophy className="game-info-icon" />
               <div className="game-info-content">
                 <div className="game-info-label">Điểm số cao nhất</div>
-                <div className="game-info-value">{score}</div>
+                <div className="game-info-value">{highestScore}</div>
               </div>
             </div>
             <div className="game-info-item">
               <FaIcons.FaWaveSquare className="game-info-icon" />
               <div className="game-info-content">
                 <div className="game-info-label">Wave cao nhất</div>
-                <div className="game-info-value">{wave}</div>
+                <div className="game-info-value">{highestWave}</div>
               </div>
             </div>
             <div className="game-info-item">
