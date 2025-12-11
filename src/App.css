@@ -14,10 +14,11 @@
 .app-shell {
   min-height: 100vh;
   background:
-    radial-gradient(1400px at 10% 20%, rgba(168, 85, 247, 0.2), transparent 40%),
+    /* radial-gradient(1400px at 10% 20%, rgba(168, 85, 247, 0.2), transparent 40%),
     radial-gradient(900px at 80% 0%, rgba(34, 211, 238, 0.2), transparent 45%),
     radial-gradient(1200px at 50% 80%, rgba(249, 115, 22, 0.15), transparent 45%),
-    linear-gradient(135deg, #060915, #0b1224 45%, #0a1220 100%);
+    linear-gradient(135deg, #060915, #0b1224 45%, #0a1220 100%); */
+    white;
   color: var(--text-primary);
 }
 
@@ -123,6 +124,7 @@
     opacity: 0;
     transform: translateY(16px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -943,8 +945,13 @@
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .flashcard-controls {
@@ -1061,6 +1068,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1083,6 +1091,7 @@
     transform: translateY(30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1661,10 +1670,12 @@
     opacity: 0;
     transform: translateY(-4px) scale(0.9);
   }
+
   20% {
     opacity: 1;
     transform: translateY(-8px) scale(1);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-18px) scale(0.9);
@@ -1776,10 +1787,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 0.8;
@@ -2079,6 +2093,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -2105,6 +2120,7 @@
     opacity: 0;
     transform: translateY(15px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -2376,9 +2392,11 @@
     transform: scale(0);
     opacity: 0;
   }
+
   50% {
     transform: scale(1.2);
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -2506,6 +2524,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -2741,6 +2760,7 @@
     right: 14px;
     bottom: 14px;
   }
+
   .chat-panel {
     width: min(420px, 94vw);
     height: 420px;

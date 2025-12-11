@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="app-shell">
       <Header active={tab} onChange={setTab} />
-      <main className="content">
+      <main>
         {renderPage()}
       </main>
       <ChatWidget />

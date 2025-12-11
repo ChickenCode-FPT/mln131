@@ -300,7 +300,7 @@ export default function ContentRenderer({ content }) {
                             </div>
                         )}
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '800px', margin: '0 auto' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '1400px', margin: '0 auto' }}>
                             {content.flow.map((item, idx) => {
                                 const Icon = getIcon(item.icon, item.iconLib);
                                 const color = flowColors[idx % 4];
