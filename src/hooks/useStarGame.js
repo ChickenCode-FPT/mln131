@@ -41,6 +41,8 @@ export default function useArenaGame({ onWaveClearQuestion } = {}) {
   const bulletPerShot = useRef(1);
   const bulletSpeedRef = useRef(BULLET_SPEED);
   const bulletCountRef = useRef(1);
+  const lastDamageTimeRef = useRef(0);
+  const DAMAGE_COOLDOWN = 500; // ms: miễn sát thương trong khoảng thời gian này sau khi trúng hit
 
   // Input
   useEffect(() => {
@@ -206,7 +208,7 @@ export default function useArenaGame({ onWaveClearQuestion } = {}) {
         return survivors;
       });
 
-      // enemy hits player
+      // enemy hits player (giới hạn 1 tim và thêm thời gian miễn sát thương ngắn)
       setEnemies((prev) => {
         let damage = 0;
         const keep = [];
@@ -221,7 +223,12 @@ export default function useArenaGame({ onWaveClearQuestion } = {}) {
           }
         }
         if (damage) {
-          setHealth((h) => Math.max(0, h - damage));
+          const now = performance.now();
+          if (now - lastDamageTimeRef.current > DAMAGE_COOLDOWN) {
+            const damageTaken = 1; // tối đa 1 tim
+            setHealth((h) => Math.max(0, h - damageTaken));
+            lastDamageTimeRef.current = now;
+          }
         }
         enemiesRef.current = keep;
         return keep;
@@ -313,6 +320,10 @@ export default function useArenaGame({ onWaveClearQuestion } = {}) {
     );
   };
 
+  const addScore = (points) => {
+    setScore((s) => s + points);
+  };
+
   return {
     playing,
     paused,
@@ -329,6 +340,7 @@ export default function useArenaGame({ onWaveClearQuestion } = {}) {
     addBulletSpeed,
     reduceBullet,
     reduceBulletSpeed,
+    addScore,
     bulletCount: bulletCountRef,
     bulletSpeed: bulletSpeedRef,
   };

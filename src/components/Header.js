@@ -1,28 +1,32 @@
 import './Header.css';
 
 const NAV_ITEMS = [
-  { id: 'lesson', label: 'Bài học' },
+  { id: 'lesson', label: 'Trang chính' },
   { id: 'flashcard', label: 'Flashcard' },
-  { id: 'game', label: 'Trò chơi ôn tập' },
-  { id: 'chat', label: 'Hỏi AI (Chat GPT)' },
+  { id: 'game', label: 'Trò chơi' },
 ];
 
 export default function Header({ active, onChange }) {
   return (
     <header className="topbar">
-      <div className="logo">StudyPlay</div>
+      <div className="logo" onClick={() => onChange('lesson')} style={{ cursor: 'pointer' }}>
+        <span>Nhóm 2</span>
+      </div>
       <nav className="nav">
         {NAV_ITEMS.map((item) => (
-          <button
+          <a
             key={item.id}
-            className={`nav-btn ${active === item.id ? 'active' : ''}`}
-            onClick={() => onChange(item.id)}
+            href="#"
+            className={`nav-link ${active === item.id ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              onChange(item.id);
+            }}
           >
             {item.label}
-          </button>
+          </a>
         ))}
       </nav>
     </header>
   );
 }
-
