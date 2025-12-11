@@ -85,3 +85,57 @@ export const getPlayerHistory = async (playerName) => {
   }
 };
 
+export const getHighestScore = async () => {
+  if (!isSupabaseConfigured || !supabase) {
+    console.warn('Supabase is not configured. Highest score not available.');
+    return { data: null, error: { message: 'Supabase not configured' } };
+  }
+
+  try {
+    // Lấy điểm số cao nhất
+    const { data, error } = await supabase
+      .from('game_scores')
+      .select('score')
+      .order('score', { ascending: false, nullsFirst: false })
+      .limit(1)
+      .single();
+
+    if (error) throw error;
+    return { data: data?.score || 0, error: null };
+  } catch (error) {
+    // Nếu không có dữ liệu, trả về 0
+    if (error.code === 'PGRST116') {
+      return { data: 0, error: null };
+    }
+    console.error('Error fetching highest score:', error);
+    return { data: 0, error };
+  }
+};
+
+export const getHighestWave = async () => {
+  if (!isSupabaseConfigured || !supabase) {
+    console.warn('Supabase is not configured. Highest wave not available.');
+    return { data: null, error: { message: 'Supabase not configured' } };
+  }
+
+  try {
+    // Lấy wave cao nhất
+    const { data, error } = await supabase
+      .from('game_scores')
+      .select('wave')
+      .order('wave', { ascending: false, nullsFirst: false })
+      .limit(1)
+      .single();
+
+    if (error) throw error;
+    return { data: data?.wave || 0, error: null };
+  } catch (error) {
+    // Nếu không có dữ liệu, trả về 0
+    if (error.code === 'PGRST116') {
+      return { data: 0, error: null };
+    }
+    console.error('Error fetching highest wave:', error);
+    return { data: 0, error };
+  }
+};
+
