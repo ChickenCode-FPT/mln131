@@ -15,7 +15,7 @@ import { saveGameScore, getLeaderboard } from '../lib/supabase';
 
 const sourceQuestions = (gameQuestions && gameQuestions.length ? gameQuestions : flashcards);
 const QUESTIONS = sourceQuestions.map((c) => ({
-  q: c.front,
+  q: c.q || c.front, // gameQuestions uses 'q', flashcards uses 'front'
   options: c.options ?? [c.back],
   answer: c.answer ?? c.back,
 }));
