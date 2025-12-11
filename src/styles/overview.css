@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .overview-hero {
-    background: linear-gradient(135deg, #1a2b4a 0%, #0f172a 100%);
+    background: transparent;
     padding: 4rem 2rem;
     display: flex;
     align-items: center;
@@ -266,7 +266,7 @@
 
 /* Quick Actions */
 .overview-actions {
-    background: #F2F2F2;
+    background: transparent;
     padding: 3rem 0;
 }
 
