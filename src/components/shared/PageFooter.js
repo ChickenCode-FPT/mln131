@@ -10,9 +10,9 @@ export default function PageFooter() {
                         <HiIcons.HiOutlineBookOpen className="footer-icon" />
                         <h4 className="footer-title">Dự án học thuật</h4>
                     </div>
-                    <p className="footer-text"><span className="footer-label">Môn:</span>MLN131</p>
-                    <p className="footer-text"><span className="footer-label">Trường:</span>Đại học FPT</p>
-                    <p className="footer-text"><span className="footer-label">Học kỳ:</span>2025</p>
+                    <p className="footer-text"><span className="footer-label">Môn: </span>MLN131</p>
+                    <p className="footer-text"><span className="footer-label">Trường: </span>Đại học FPT</p>
+                    <p className="footer-text"><span className="footer-label">Học kỳ: </span>2025</p>
                     <div className="footer-accent accent-red" />
                 </div>
 

@@ -197,9 +197,9 @@ export default function LessonPage({ onChange }) {
               <HiIcons.HiOutlineBookOpen className="footer-icon" />
               <h4 className="footer-title">Dự án học thuật</h4>
             </div>
-            <p className="footer-text"><span className="footer-label">Môn:</span>MLN131</p>
-            <p className="footer-text"><span className="footer-label">Trường:</span>Đại học FPT</p>
-            <p className="footer-text"><span className="footer-label">Học kỳ:</span>2025</p>
+            <p className="footer-text"><span className="footer-label">Môn: </span>MLN131</p>
+            <p className="footer-text"><span className="footer-label">Trường: </span>Đại học FPT</p>
+            <p className="footer-text"><span className="footer-label">Học kỳ: </span>2025</p>
             <div className="footer-accent accent-red" />
           </div>
 
@@ -226,7 +226,7 @@ export default function LessonPage({ onChange }) {
               <HiIcons.HiEnvelope className="footer-icon" />
               <h4 className="footer-title">Giảng viên</h4>
             </div>
-            <p className="footer-text"><span className="footer-label">Hướng dẫn:</span>Lê Minh Trí</p>
+            <p className="footer-text"><span className="footer-label">Hướng dẫn: </span>Lê Minh Trí</p>
             <p className="footer-text footer-note">Cảm ơn thầy đã hỗ trợ nhóm trong quá trình thực hiện dự án.</p>
             <div className="footer-accent accent-green" />
           </div>
