@@ -1534,6 +1534,7 @@
    ============================================ */
 
 .game-page {
+  margin-top: 5vh;
   width: 100%;
   min-height: 100vh;
 }
@@ -1730,11 +1731,11 @@
 
 .game-area {
   position: relative;
-  background: linear-gradient(145deg, #0a0f1a, #05080f);
-  border: 2px solid #1c2740;
+  background: linear-gradient(145deg, #e5e7eb, #f3f4f6);
+  border: 2px solid #d1d5db;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   min-width: 1080px;
   min-height: 640px;
   touch-action: none;
@@ -1749,11 +1750,11 @@
 
 .game-area.playing {
   border-color: #22c55e;
-  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.2);
+  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.15);
 }
 
 .game-area.paused {
-  border-color: #1c2740;
+  border-color: #d1d5db;
 }
 
 /* Game Preview Overlay */
@@ -1763,7 +1764,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(11, 19, 36, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1773,7 +1774,7 @@
 
 .game-preview-content {
   text-align: center;
-  color: #e8e5da;
+  color: #1f2937;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1804,7 +1805,7 @@
 .game-preview-text {
   font-size: 18px;
   font-weight: 600;
-  color: #e8e5da;
+  color: #1f2937;
   margin-bottom: 4px;
 }
 
@@ -1885,7 +1886,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(11, 19, 36, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1895,7 +1896,7 @@
 
 .game-overlay-content {
   text-align: center;
-  color: #e8e5da;
+  color: #1f2937;
 }
 
 .game-overlay-icon {
@@ -1907,7 +1908,7 @@
 .game-overlay-text {
   font-size: 24px;
   font-weight: 600;
-  color: #e8e5da;
+  color: #1f2937;
 }
 
 /* Game Question Modal */
@@ -1917,7 +1918,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(11, 19, 36, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1927,13 +1928,13 @@
 }
 
 .game-question-card {
-  background: linear-gradient(145deg, #111c34, #0d1528);
-  border: 1px solid #1c2740;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 32px;
   max-width: 600px;
   width: 90%;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .game-question-header {
@@ -1951,14 +1952,14 @@
 .game-question-title {
   font-size: 24px;
   font-weight: 700;
-  color: #e8e5da;
+  color: #1f2937;
   margin: 0;
 }
 
 .game-question-text {
   font-size: 18px;
   line-height: 1.6;
-  color: #e8e5da;
+  color: #1f2937;
   margin-bottom: 24px;
 }
 
@@ -1974,10 +1975,10 @@
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  background: #0b1220;
-  border: 1px solid #1f2937;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  color: #e8e5da;
+  color: #1f2937;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1986,7 +1987,7 @@
 }
 
 .game-question-option:hover:not(:disabled) {
-  background: #1a2332;
+  background: #eff6ff;
   border-color: #3b82f6;
   transform: translateX(4px);
 }
@@ -2072,10 +2073,10 @@
   align-items: center;
   gap: 8px;
   padding: 12px;
-  background: rgba(59, 130, 246, 0.1);
+  background: #dbeafe;
   border: 1px solid #3b82f6;
   border-radius: 8px;
-  color: #93c5fd;
+  color: #1d4ed8;
   font-size: 14px;
 }
 
@@ -2102,13 +2103,13 @@
 
 .game-reward-modal {
   position: relative;
-  background: linear-gradient(145deg, #111c34, #0d1528);
-  border: 1px solid #1c2740;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 40px;
   max-width: 700px;
   width: 90%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   animation: slideUp 0.3s ease;
 }
 
@@ -2142,7 +2143,7 @@
 .game-reward-modal-title {
   font-size: 24px;
   font-weight: 700;
-  color: #e8e5da;
+  color: #1f2937;
   margin: 0;
 }
 
@@ -2159,8 +2160,8 @@
   align-items: center;
   gap: 8px;
   padding: 16px;
-  background: linear-gradient(145deg, #0b1220, #1a2332);
-  border: 2px solid #1f2937;
+  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  border: 2px solid #e5e7eb;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -2168,10 +2169,10 @@
 }
 
 .game-reward-option:hover {
-  background: linear-gradient(145deg, #1a2332, #0b1220);
+  background: linear-gradient(145deg, #f3f4f6, #ffffff);
   border-color: #f59e0b;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
 .game-reward-option:active {
@@ -2187,12 +2188,12 @@
 .reward-label {
   font-size: 16px;
   font-weight: 700;
-  color: #e8e5da;
+  color: #1f2937;
 }
 
 .reward-desc {
   font-size: 12px;
-  color: #9ca3af;
+  color: #6b7280;
 }
 
 /* Game Info */
@@ -2645,10 +2646,10 @@
 .chat-panel {
   width: min(360px, 90vw);
   height: 420px;
-  background: #0b1120;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -2659,15 +2660,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .chat-panel-title {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #e8e5da;
+  color: #1f2937;
   font-weight: 700;
 }
 
@@ -2678,7 +2679,7 @@
 .chat-close {
   background: none;
   border: none;
-  color: #9ca3af;
+  color: #6b7280;
   cursor: pointer;
   font-size: 20px;
   display: flex;
@@ -2686,7 +2687,7 @@
 }
 
 .chat-close:hover {
-  color: #e5e7eb;
+  color: #1f2937;
 }
 
 .chat-panel-body {
@@ -2712,9 +2713,9 @@
 }
 
 .bubble.ai {
-  background: rgba(255, 255, 255, 0.06);
-  color: #e5e7eb;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f3f4f6;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
 }
 
 .bubble.user {
@@ -2727,17 +2728,17 @@
   display: flex;
   gap: 8px;
   padding: 10px 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid #e5e7eb;
+  background: #f8fafc;
 }
 
 .chat-input input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
   padding: 10px 12px;
-  color: #e5e7eb;
+  color: #1f2937;
 }
 
 .chat-input button {

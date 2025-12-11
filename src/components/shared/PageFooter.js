@@ -21,8 +21,8 @@ export default function PageFooter() {
                         <HiIcons.HiUserGroup className="footer-icon" />
                         <h4 className="footer-title">Thông tin nhóm</h4>
                     </div>
-                    <p className="footer-text"><span className="footer-label">Nhóm:</span>6</p>
-                    <p className="footer-text"><span className="footer-label">Thành viên:</span></p>
+                    <p className="footer-text"><span className="footer-label">Nhóm: </span>6</p>
+                    <p className="footer-text"><span className="footer-label">Thành viên: </span></p>
                     <ul className="footer-list">
                         <li>Đỗ Quốc Hưng - SE170515</li>
                         <li>Vũ Quang Nguyên - SE180208</li>
@@ -39,7 +39,7 @@ export default function PageFooter() {
                         <HiIcons.HiEnvelope className="footer-icon" />
                         <h4 className="footer-title">Giảng viên</h4>
                     </div>
-                    <p className="footer-text"><span className="footer-label">Hướng dẫn:</span>Lê Minh Trí</p>
+                    <p className="footer-text"><span className="footer-label">Hướng dẫn: </span>Lê Minh Trí</p>
                     <p className="footer-text footer-note">Cảm ơn thầy đã hỗ trợ nhóm trong quá trình thực hiện dự án.</p>
                     <div className="footer-accent accent-green" />
                 </div>
