@@ -3,7 +3,7 @@ import lessons from '../data/lessonContent';
 import PageHero from '../components/shared/PageHero';
 import ContentRenderer from '../components/shared/ContentRenderer';
 import PageFooter from '../components/shared/PageFooter';
-import '../App.css';
+import '../styles/LessonPage.css';
 
 // Scroll reveal hook
 const useScrollReveal = () => {

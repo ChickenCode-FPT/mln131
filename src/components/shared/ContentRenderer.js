@@ -210,12 +210,26 @@ export default function ContentRenderer({ content }) {
                             <h2 className="content-title">{content.title}</h2>
                         </div>
 
-                        {content.sections.map((section, idx) => (
+                        {content.sections.map((section, idx) => {
+                            // Màu cho từng section: Sự ra đời (đỏ), Bản chất (cam), Chức năng (xanh lá)
+                            let badgeBackground, textColor;
+                            if (idx === 0) {
+                                badgeBackground = 'linear-gradient(135deg, #dc2626, #b91c1c)'; // Đỏ
+                                textColor = '#dc2626';
+                            } else if (idx === 1) {
+                                badgeBackground = 'linear-gradient(135deg, #f59e0b, #d97706)'; // Cam
+                                textColor = '#f59e0b';
+                            } else {
+                                badgeBackground = 'linear-gradient(135deg, #10b981, #059669)'; // Xanh lá
+                                textColor = '#10b981';
+                            }
+
+                            return (
                             <div key={idx} style={{ marginBottom: '3rem' }}>
                                 <h3 style={{
                                     fontSize: '1.5rem',
                                     fontWeight: '700',
-                                    color: '#1a2b4a',
+                                    color: textColor,
                                     marginBottom: '1.5rem',
                                     display: 'flex',
                                     alignItems: 'center',
@@ -224,7 +238,7 @@ export default function ContentRenderer({ content }) {
                                     <span style={{
                                         width: '36px',
                                         height: '36px',
-                                        background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+                                        background: badgeBackground,
                                         borderRadius: '8px',
                                         display: 'flex',
                                         alignItems: 'center',
@@ -279,7 +293,8 @@ export default function ContentRenderer({ content }) {
                                     </div>
                                 )}
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             );
@@ -368,15 +383,32 @@ export default function ContentRenderer({ content }) {
                             <h2 className="content-title">{content.title}</h2>
                         </div>
 
-                        {content.sections.map((section, idx) => (
+                        {content.sections.map((section, idx) => {
+                            // Màu cho từng section
+                            let borderColor, textColor;
+                            if (idx === 0) {
+                                borderColor = '#dc2626'; // Đỏ
+                                textColor = '#dc2626';
+                            } else if (idx === 1) {
+                                borderColor = '#f59e0b'; // Cam
+                                textColor = '#f59e0b';
+                            } else if (idx === 2) {
+                                borderColor = '#10b981'; // Xanh lá
+                                textColor = '#10b981';
+                            } else {
+                                borderColor = '#3b82f6'; // Xanh dương
+                                textColor = '#3b82f6';
+                            }
+
+                            return (
                             <div key={idx} style={{ marginBottom: '3rem' }}>
                                 <h3 style={{
                                     fontSize: '1.5rem',
                                     fontWeight: '700',
-                                    color: '#1a2b4a',
+                                    color: textColor,
                                     marginBottom: '1.5rem',
                                     paddingLeft: '1rem',
-                                    borderLeft: '4px solid #dc2626'
+                                    borderLeft: `4px solid ${borderColor}`
                                 }}>
                                     {section.subtitle}
                                 </h3>
@@ -392,16 +424,27 @@ export default function ContentRenderer({ content }) {
 
                                 {section.points && (
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
-                                        {section.points.map((point, pIdx) => (
-                                            <div key={pIdx} className="bullet-card">
-                                                <div className={`bullet-icon ${['icon-red', 'icon-amber', 'icon-green', 'icon-blue', 'icon-purple'][pIdx % 5]}`}>
-                                                    {['🎯', '⭐', '📖', '🏛️', '⚖️'][pIdx % 5]}
+                                        {section.points.map((point, pIdx) => {
+                                            const bulletIconComponents = [
+                                                HiIcons.HiFlag,
+                                                HiIcons.HiStar,
+                                                HiIcons.HiBookOpen,
+                                                HiIcons.HiBuildingOffice2,
+                                                HiIcons.HiScale,
+                                            ];
+                                            const Icon = bulletIconComponents[pIdx % 5] || HiIcons.HiSparkles;
+                                            const bulletIconSet = ['icon-red', 'icon-amber', 'icon-green', 'icon-blue', 'icon-purple'];
+                                            return (
+                                                <div key={pIdx} className="bullet-card">
+                                                    <div className={`bullet-icon ${bulletIconSet[pIdx % 5]}`}>
+                                                        <Icon />
+                                                    </div>
+                                                    <div className="bullet-content">
+                                                        <p dangerouslySetInnerHTML={{ __html: highlightKeywords(point) }} />
+                                                    </div>
                                                 </div>
-                                                <div className="bullet-content">
-                                                    <p dangerouslySetInnerHTML={{ __html: highlightKeywords(point) }} />
-                                                </div>
-                                            </div>
-                                        ))}
+                                            );
+                                        })}
                                     </div>
                                 )}
 
@@ -411,7 +454,8 @@ export default function ContentRenderer({ content }) {
                                     </div>
                                 )}
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             );

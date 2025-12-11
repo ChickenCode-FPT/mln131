@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import * as HiIcons from 'react-icons/hi2';
 import lessons from '../data/lessonContent';
 import './Footer.css';
-import '../styles/educational.css';
+ import '../styles/educational.css';
 import '../styles/overview.css';
 
 // Scroll reveal hook
@@ -21,7 +21,7 @@ const useScrollReveal = () => {
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.overview-card, .hero-section');
+    const elements = document.querySelectorAll('.overview-hero, .overview-card, .action-card');
     elements.forEach((el) => observer.observe(el));
 
     return () => {
@@ -95,8 +95,8 @@ export default function LessonPage({ onChange }) {
         <div className="overview-hero-content">
           <span className="overview-badge">Chương 4 • MLN131</span>
           <h1 className="overview-title">
-            Dân chủ xã hội chủ nghĩa<br />
-            <span className="title-highlight">và Nhà nước XHCN</span>
+            Dân Chủ và Nhà Nước<br />
+            <span className="title-highlight">Xã Hội Chủ Nghĩa</span>
           </h1>
           <p className="overview-subtitle">
             {lesson.summary}
@@ -128,7 +128,7 @@ export default function LessonPage({ onChange }) {
         <div className="content-wrapper-edu">
           <div className="section-header" style={{ marginBottom: '2rem' }}>
             <h2 className="content-title">Khám phá nội dung</h2>
-            <p style={{ color: '#6b7280', marginTop: '0.5rem' }}>
+            <p className="overview-section-subtitle">
               Chọn một chủ đề để tìm hiểu chi tiết
             </p>
           </div>

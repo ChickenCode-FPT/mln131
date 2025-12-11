@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import flashcards from '../data/flashcards';
 import * as HiIcons from 'react-icons/hi2';
 import * as FaIcons from 'react-icons/fa6';
+import './FlashcardPage.css';
 
 const shuffle = (arr) => arr.slice().sort(() => Math.random() - 0.5);
 const letters = ['A', 'B', 'C', 'D'];

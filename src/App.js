@@ -11,7 +11,7 @@ import BanChatPage from './pages/BanChatPage';
 import NhaNuocPage from './pages/NhaNuocPage';
 import MoiQuanHePage from './pages/MoiQuanHePage';
 import VietNamPage from './pages/VietNamPage';
-import './App.css';
+import './styles/Common.css';
 
 function App() {
   const [tab, setTab] = useState('lesson');
@@ -25,17 +25,17 @@ function App() {
       case 'game':
         return <GamePage />;
       case 'danchu':
-        return <DanChuPage />;
+        return <DanChuPage onChange={setTab} />;
       case 'sosanh':
-        return <SoSanhPage />;
+        return <SoSanhPage onChange={setTab} />;
       case 'banchat':
-        return <BanChatPage />;
+        return <BanChatPage onChange={setTab} />;
       case 'nhanuoc':
-        return <NhaNuocPage />;
+        return <NhaNuocPage onChange={setTab} />;
       case 'moiquanhe':
-        return <MoiQuanHePage />;
+        return <MoiQuanHePage onChange={setTab} />;
       case 'vietnam':
-        return <VietNamPage />;
+        return <VietNamPage onChange={setTab} />;
       default:
         return <LessonPage onChange={setTab} />;
     }
