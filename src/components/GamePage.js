@@ -10,7 +10,6 @@ import useArenaGame from '../hooks/useStarGame';
 import flashcards, { gameQuestions } from '../data/flashcards';
 import * as HiIcons from 'react-icons/hi2';
 import * as FaIcons from 'react-icons/fa6';
-import * as MdIcons from 'react-icons/md';
 import { saveGameScore, getLeaderboard, getHighestScore, getHighestWave } from '../lib/supabase';
 import './GamePage.css';
 
@@ -120,7 +119,6 @@ export default function GamePage() {
 
   const {
     playing,
-    paused,
     score,
     wave,
     health,

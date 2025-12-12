@@ -10,9 +10,9 @@ export default function PageFooter() {
                         <HiIcons.HiOutlineBookOpen className="footer-icon" />
                         <h4 className="footer-title">Dự án học thuật</h4>
                     </div>
-                    <p className="footer-text"><span className="footer-label">Môn: </span>MLN131</p>
+                    <p className="footer-text"><span className="footer-label">Môn: </span>MLN131_3W_02</p>
                     <p className="footer-text"><span className="footer-label">Trường: </span>Đại học FPT</p>
-                    <p className="footer-text"><span className="footer-label">Học kỳ: </span>2025</p>
+                    <p className="footer-text"><span className="footer-label">Học kỳ: </span>Fall 2025</p>
                     <div className="footer-accent accent-red" />
                 </div>
 
@@ -21,7 +21,7 @@ export default function PageFooter() {
                         <HiIcons.HiUserGroup className="footer-icon" />
                         <h4 className="footer-title">Thông tin nhóm</h4>
                     </div>
-                    <p className="footer-text"><span className="footer-label">Nhóm: </span>6</p>
+                    <p className="footer-text"><span className="footer-label">Nhóm: </span>2</p>
                     <p className="footer-text"><span className="footer-label">Thành viên: </span></p>
                     <ul className="footer-list">
                         <li>Đỗ Quốc Hưng - SE170515</li>
@@ -39,13 +39,13 @@ export default function PageFooter() {
                         <HiIcons.HiEnvelope className="footer-icon" />
                         <h4 className="footer-title">Giảng viên</h4>
                     </div>
-                    <p className="footer-text"><span className="footer-label">Hướng dẫn: </span>Lê Minh Trí</p>
+                    <p className="footer-text"><span className="footer-label">Hướng dẫn: </span>Lê Minh Trí (TriLM32)</p>
                     <p className="footer-text footer-note">Cảm ơn thầy đã hỗ trợ nhóm trong quá trình thực hiện dự án.</p>
                     <div className="footer-accent accent-green" />
                 </div>
             </div>
             <div className="footer-bottom">
-                <p className="footer-copyright">© 2025 - Sản phẩm học tập nhóm 6 - FPT University</p>
+                <p className="footer-copyright">© 2025 - Sản phẩm học tập nhóm 2 - FPT University</p>
                 <p className="footer-made">Made with <HiIcons.HiHeart className="inline-icon" /> in Vietnam</p>
             </div>
         </footer>
